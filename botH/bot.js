@@ -30,7 +30,7 @@ function postFuck() {
 
   body = {
     "bot_id" : botID,
-    "text" : botResponse
+    "text" : fuck
   };
 
   console.log('sending ' + fuck + ' to ' + botID);

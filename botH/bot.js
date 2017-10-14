@@ -101,7 +101,7 @@ function doTwenty() {
     var lines, theWorks
     theWorks = {
         limit : 100,
-        method : GET/groups/35274623/messages
+        method : 'GET/groups/35274623/messages'
     }
     lines = theWorks.match("\"text\":\"[\\w\\W]*?\"");
 }

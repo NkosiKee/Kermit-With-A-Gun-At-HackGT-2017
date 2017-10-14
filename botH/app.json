@@ -1,7 +1,7 @@
 {
-  "name": "TEST_BOT",
-  "description": "Basic Groupme Bot written in Node",
+  "name": "groupme-chatbot",
+  "description": "Groupme Bot written in Node",
   "repository": "https://github.com/NkosiKee/Kermit-With-A-Gun-At-HackGT-2017/tree/BotTesting/botH",
-  "logo": "https://i.ytimg.com/vi/SjeYld2bbbs/hqdefault.jpg",
+  "logo": "http://www.tailgate365.com/wp-content/uploads/2011/06/tom-hanks-906.jpg",
   "keywords": []
 }

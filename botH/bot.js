@@ -7,6 +7,7 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botRegex = /^\/cool guy$/;
   var botFuckex = /^!fml/;
+  var botLastTwenty = /^!last twenty/;
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
@@ -16,6 +17,9 @@ function respond() {
     this.res.writeHead(200);
     postFuck();
     this.res.end();
+  } else if (request.text && botLastTwenty.test(request.text)) {
+    this.res.writeHead(200);
+    doTwenty();
   } else {
     console.log("don't care");
     this.res.writeHead(200);
@@ -91,6 +95,15 @@ function postFuck() {
     console.log('timeout posting message '  + JSON.stringify(err));
   });
   botReq.end(JSON.stringify(body));
+}
+
+function doTwenty() {
+    var lines, theWorks
+    theWorks = {
+        limit : 100,
+        method : GET /groups/35274623/messages
+    }
+    lines = theWorks.match("\"text\":\"[\\w\\W]*?\"");
 }
 
 exports.respond = respond;

@@ -103,7 +103,7 @@ function doTwenty() {
         limit : 100,
         method : 'GET/groups/35274623/messages'
     }
-    lines = theWorks.match("\"text\":\"[\\w\\W]*?\"");
+    lines = theWorks.toString().match("\"text\":\"[\\w\\W]*?\"");
 }
 
 exports.respond = respond;

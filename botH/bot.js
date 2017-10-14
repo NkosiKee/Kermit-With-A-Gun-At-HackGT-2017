@@ -6,8 +6,8 @@ var botID = process.env.BOT_ID;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botRegex = /^\/cool guy$/;
-  var botFuckex = /^!fml/;
-  var botLastTwenty = /^!last twenty/;
+  var botFuckex = /^!fml$/;
+  var botLastTwenty = /^!last twenty$/;
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
@@ -101,7 +101,7 @@ function doTwenty() {
     var lines, theWorks
     theWorks = {
         limit : 100,
-        method : GET /groups/18268055/messages
+        method : -X GET /groups/18268055/messages
     }
     lines = theWorks.match("\"text\":\"[\\w\\W]*?\"");
 }

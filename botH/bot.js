@@ -1,41 +1,47 @@
-var peer = new Peer(yieafjhadsadfk);
-
 var HTTPS = require('https');
+var HTTP = require('http');
+var stream = require('stream');
+var fileSys = require('fs');
+var util = require('util');
 var cool = require('cool-ascii-faces');
-
 var botID = process.env.BOT_ID;
+var io = require('socket.io')(server);
+var p2p = require('socket.io-p2p-server').Server;
+var peer = new Peer(yieafjhadsadfk);
+io.use(p2p);
+
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botRegex = /^\/cool guy$/;
   var botFuckex = /^!fml$/;
-  var botLastTwenty = /^!last twenty$/;
-  var botTesting =/^!testing123$/;
+  var botLastTwenty = /^!gen$/;
+  var botTesting =/^!test$/;
 
   if(request.text && botRegex.test(request.text)) {
-        this.res.writeHead(200);
-        postMessage();
-        this.res.end();
+    this.res.writeHead(200);
+    postMessage();
+    this.res.end();
   } else if (request.text && botFuckex.test(request.text)) {
-        this.res.writeHead(200);
-        postFuck();
-        this.res.end();
+    this.res.writeHead(200);
+    postFuck();
+    this.res.end();
   } else if (request.text && botLastTwenty.test(request.text)) {
-        this.res.writeHead(200);
-        doTwenty();
-        this.res.end();
-    }
-    else if(request.text && botTesting.test(request.text)) {
-        this.res.writeHead(200);
-        ptopPractice();
-        this.res.end();
-    }
+    this.res.writeHead(200);
+    doTwenty();
+    this.res.end()
+  } else if(request.text && botTesting.test(request.text)) {
+      this.res.writeHead(200);
+      ptopPractice();
+      this.res.end();
   } else {
-        console.log("don't care");
-        this.res.writeHead(200);
-        this.res.end();
+    console.log("message: "  + request.text);
+    this.res.writeHead(200);
+    this.res.end();
   }
 }
+
+
 
 function postMessage() {
   var botResponse, options, body, botReq;
@@ -107,6 +113,7 @@ function postFuck() {
   botReq.end(JSON.stringify(body));
 }
 
+
 function postString(String s) {
   var botResponse, options, body, botReq;
 
@@ -143,12 +150,37 @@ function postString(String s) {
 }
 
 function doTwenty() {
-    var lines, theWorks
-    theWorks = {
-        limit : 100,
-        method : 'GET /groups/35274623/messages'
+
+  var botResponse, botRequest, options;
+  options = {
+    path : 'https://api.groupme.com/v3/groups/18268055/messages?limit=20&token=007780d0809a0135a92c73fc1c1777f9',
+    method : 'GET',
+    type : "JSON"
+  };
+
+  botRequest = HTTPS.request(options, function(res) {
+    res.on("readable", function handleReadableEvent() {
+      var chunk = null;
+
+      while ((chunk = response.read()) != null) {
+        console.log("Chunk received: " + chunk.length + " bytes.");
+      }
+    })
+  });
+  botRequest.on("error", function handleError(error) {
+    console.log("Request error: " + error);
+  });
+
+/*  botRequest = HTTPS.request(options, function(res) {
+    if (res.statusCode == 200) {
+      console.log("SHIT");
+      botResponse = JSON.stringify(res.read());
+      botResponse = botResponse.match("\"text\":\"[\\w\\W]*?\"");
+
+    } else {
+      console.log("shit went wrong: " + res.statusCode);
     }
-    lines = theWorks.toString().match("\"text\":\"[\\w\\W]*?\"");
+  }) */
 }
 
 function ptopPractice() {
@@ -158,5 +190,4 @@ function ptopPractice() {
          postString("Other me said: " + i);
     });
 }
-
 exports.respond = respond;

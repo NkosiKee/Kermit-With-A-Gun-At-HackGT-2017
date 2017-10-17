@@ -114,7 +114,7 @@ function postFuck() {
 }
 
 
-function postString(String s) {
+function postString(s) {
   var botResponse, options, body, botReq;
 
   botResponse = s;
@@ -186,7 +186,7 @@ function doTwenty() {
 function ptopPractice() {
     var stream = "Here's some Input";
     var mediaConnection = peer.connect(hgmitizblkt, stream);
-    peer.on('connection',function (var i) {
+    peer.on('connection',function (i) {
          postString("Other me said: " + i);
     });
 }

@@ -81,7 +81,7 @@ function postMessage() {
 function postFuck() {
   var botResponse, options, body, botReq;
 
-  botResponse = "fuck";
+  botResponse = "Who do you think you are, I am!";
 
   options = {
     hostname: 'api.groupme.com',
